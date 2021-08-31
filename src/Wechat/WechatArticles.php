@@ -4,6 +4,6 @@ namespace Wechat;
 class WechatArticles {
 
     public function index() {
-        echo '这是一个composer包';
+        echo '这是一个composer包第二版';
     }
 }
