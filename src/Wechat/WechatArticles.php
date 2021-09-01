@@ -10,6 +10,8 @@ class WechatArticles {
     public function index() {
         $this->html = file_get_contents($this->content_url);
         return [
+            'title' => $this->getTitle(),
+            'pulish_date' => $this->getPulishedDate(),
             'content' => $this->getContent(),
             'nickname' => $this->getNickname(),
             'head_img' => $this->getHeadImg()
@@ -25,6 +27,16 @@ class WechatArticles {
         return $content;
     }
 
+    // 文章标题
+    protected function getTitle() {
+        preg_match_all('/twitter:title" content=\"(.*?)\" \/>/si', $this->html, $m);
+        return array_key_exists(1, $m)? $m[1][0] : '';
+    }
+
+    protected function getPulishedDate(){
+        preg_match_all('/var ct = \"(.*?)\";/si', $this->html, $m);
+        return array_key_exists(1, $m)? $m[1][0] : '';
+    }
 
     //公众号头像
     protected function getHeadImg() {
