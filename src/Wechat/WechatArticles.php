@@ -11,7 +11,7 @@ class WechatArticles {
         $this->html = file_get_contents($this->content_url);
         return [
             'title' => $this->getTitle(),
-            'pulish_date' => $this->getPulishedDate(),
+            'publish_date' => $this->getPublishDate(),
             'content' => $this->getContent(),
             'nickname' => $this->getNickname(),
             'head_img' => $this->getHeadImg()
@@ -33,7 +33,7 @@ class WechatArticles {
         return array_key_exists(1, $m)? $m[1][0] : '';
     }
 
-    protected function getPulishedDate(){
+    protected function getPublishDate(){
         preg_match_all('/var ct = \"(.*?)\";/si', $this->html, $m);
         return array_key_exists(1, $m)? $m[1][0] : '';
     }
