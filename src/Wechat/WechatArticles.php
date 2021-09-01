@@ -9,7 +9,6 @@ class WechatArticles {
 
     public function index() {
         $this->html = file_get_contents($this->content_url);
-
         return [
             'content' => $this->getContent(),
             'nickname' => $this->getNickname(),
